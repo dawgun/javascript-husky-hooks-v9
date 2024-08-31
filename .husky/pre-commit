@@ -1,0 +1,1 @@
+node husky-hooks/pre-commit.js "$1"

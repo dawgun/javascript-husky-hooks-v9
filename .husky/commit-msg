@@ -1,0 +1,2 @@
+node husky-hooks/commit-msg.js "$1"
+
