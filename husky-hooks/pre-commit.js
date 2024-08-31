@@ -28,11 +28,11 @@ const validatePreCommit = async () => {
 
   const staggedFiles = await exec("git diff --cached --name-only");
 
-  const ignoreHookFolder = "husky-hooks"
+  const ignoredHooks = ["commit-msg.js", "pre-commit.js", "pre-push.js"]
 
   const staggedFilesWithJsOrTs = staggedFiles.stdout
     .split("\n")
-    .filter((staggedFiles) => !staggedFiles.includes(ignoreHookFolder))
+    .filter((staggedFiles) => !ignoredHooks.some((ignoredHook) => staggedFiles.includes(ignoredHook)))
     .filter(
       (staggedFile) =>
         staggedFile.endsWith(".js") || staggedFile.endsWith(".ts") || staggedFile.endsWith(".jsx") || staggedFile.endsWith(".tsx") 
